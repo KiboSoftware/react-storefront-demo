@@ -1,4 +1,4 @@
-import { productSuggestions } from 'react-storefront-connector'
+import { productSuggestions } from 'react-storefront-kibo-connector'
 
 export default async function(req, res) {
   const { productId } = req.query

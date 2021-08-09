@@ -12,6 +12,7 @@ import Link from 'react-storefront/link/Link'
 import { Hbox } from 'react-storefront/Box'
 import SessionContext from 'react-storefront/session/SessionContext'
 import get from 'lodash/get'
+// import signIn from './api/signIn'
 
 const styles = theme => ({
   root: {
@@ -49,7 +50,7 @@ export default function Cart(props) {
   const classes = useStyles()
   const { session, actions } = useContext(SessionContext)
   const items = get(session, 'cart.items')
-
+  
   const handleUpdateQuantity = (product, quantity) => {
     actions.updateCart({
       item: product,
@@ -69,6 +70,16 @@ export default function Cart(props) {
         <Typography variant="h6">
           My Cart ({items.length} {items.length === 1 ? 'item' : 'items'})
         </Typography>
+      </Row>
+      <Row>
+        <div>Login</div>
+        <input type="text" placeholder="username" />
+        <input type="text" placeholder="password" />
+        <p>{JSON.stringify(session)}</p>
+        <button onClick={() => signIn({
+          username: 'chandradeepta.laha@gmail.com',
+          password: 'Deep.laha4@'
+        })}>SignIn</button>
       </Row>
       <Row>
         <Grid container spacing={4}>
