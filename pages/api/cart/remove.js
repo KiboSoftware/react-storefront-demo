@@ -1,4 +1,4 @@
-import { removeCartItem } from 'react-storefront-connector'
+import { removeCartItem } from 'react-storefront-kibo-connector'
 
 export default async function handler(req, res) {
   const { item } = req.body || {}

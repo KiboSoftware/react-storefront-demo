@@ -1,4 +1,4 @@
-import { cart } from 'react-storefront-connector'
+import { cart } from 'react-storefront-kibo-connector'
 
 export default async function(req, res) {
   res.json(await cart(req, res))

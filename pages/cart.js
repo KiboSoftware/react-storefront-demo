@@ -49,7 +49,7 @@ export default function Cart(props) {
   const classes = useStyles()
   const { session, actions } = useContext(SessionContext)
   const items = get(session, 'cart.items')
-
+  
   const handleUpdateQuantity = (product, quantity) => {
     actions.updateCart({
       item: product,

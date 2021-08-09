@@ -1,4 +1,4 @@
-export { productMedia } from 'react-storefront-connector'
+export { productMedia } from 'react-storefront-kibo-connector'
 
 export default async function(req, res) {
   const { productId, color } = req.query

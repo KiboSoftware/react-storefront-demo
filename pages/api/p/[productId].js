@@ -1,4 +1,4 @@
-import { product } from 'react-storefront-connector'
+import { product } from 'react-storefront-kibo-connector'
 
 export default async function pdp(req, res) {
   const { productId } = req.query
