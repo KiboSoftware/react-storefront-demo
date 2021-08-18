@@ -11,7 +11,13 @@ import ProductOptionSelector from 'react-storefront/option/ProductOptionSelector
 
 const useStyles = makeStyles(theme => ({
   root: {
-    padding: `${theme.spacing(2)}px 0`,
+    padding: `${theme.spacing(2)}px`,
+    // border: '1px solid black',
+    margin: `${theme.spacing(1)}px`,
+    "&:hover": {
+      boxShadow: "0px 4px 11px rgba(29,31,34,0.1) !important"
+    }
+
   },
   thumbnail: {
     marginBottom: theme.spacing(1),
@@ -83,7 +89,7 @@ function ProductItem({ product, index, classes, className, colorSelector }) {
             />
           )}
           <Rating product={product} className={classes.rating} />
-          <Typography className={classes.price}>{product.price}</Typography>
+          <Typography className={classes.price}>{`${product.priceText}`}</Typography>
         </div>
       </Vbox>
     </div>

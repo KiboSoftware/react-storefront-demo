@@ -14,3 +14,4 @@ module.exports = withReactStorefront({
     return config
   },
 })
+

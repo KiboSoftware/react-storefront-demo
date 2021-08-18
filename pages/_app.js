@@ -10,6 +10,7 @@ import reportError from '../components/reportError'
 import useJssStyles from 'react-storefront/hooks/useJssStyles'
 import SessionProvider from 'react-storefront/session/SessionProvider'
 import useAppStore from 'react-storefront/hooks/useAppStore'
+import useLoginStatus from '../hooks/useLoginStatus'
 
 const styles = theme => ({
   main: {

@@ -75,8 +75,6 @@ const Subcategory = lazyProps => {
     for (let filter of filters) {
       const [name, value] = filter.split(':')
 
-      console.log(name, value)
-
       if (query[name]) {
         query[name] = `${query[name]},${value}`
       } else {
@@ -99,8 +97,6 @@ const Subcategory = lazyProps => {
     } else {
       delete query.sort
     }
-
-    console.log('query', query)
 
     return query
   }, [])
@@ -161,7 +157,13 @@ const Subcategory = lazyProps => {
               </Grid>
               <Grid item xs={12}>
                 {!loading ? (
-                  <ResponsiveTiles autoScrollToNewTiles>
+                  <ResponsiveTiles autoScrollToNewTiles cols={{
+                    xs: 2,
+                    sm: 2,
+                    md: 3,
+                    lg: 4,
+                    xl: 5
+                  }}>
                     {pageData.products.map((product, i) => (
                       <ProductItem key={product.id} product={product} index={i} />
                     ))}

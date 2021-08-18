@@ -4,12 +4,16 @@ import AppBar from 'react-storefront/AppBar'
 import CartButton from 'react-storefront/CartButton'
 import Search from './search/Search'
 import Logo from '../components/assets/react-storefront-logo.svg'
-import { Container } from '@material-ui/core'
+import { Badge, Container } from '@material-ui/core'
 import Menu from 'react-storefront/menu/Menu'
 import MenuButton from 'react-storefront/menu/MenuButton'
+import { IconButton } from '@material-ui/core'
+import { AccountCircle } from "@material-ui/icons";
+import { AccountCircleOutlined } from "@material-ui/icons";
 import Link from 'react-storefront/link/Link'
 import SessionContext from 'react-storefront/session/SessionContext'
 import get from 'lodash/get'
+import useLoginStatus from '../hooks/useLoginStatus'
 
 const useStyles = makeStyles(theme => ({
   title: {},
@@ -44,6 +48,7 @@ export default function Header({ menu }) {
   const handleMenuClose = useCallback(() => setMenuOpen(false), [])
   const handleMenuButtonClick = useCallback(() => setMenuOpen(menuOpen => !menuOpen), [])
   const { session } = useContext(SessionContext)
+  const isLoggedIn = useLoginStatus();
 
   return (
     <>
@@ -55,7 +60,17 @@ export default function Header({ menu }) {
             </a>
           </Link>
           <Search />
-          <CartButton quantity={get(session, 'itemsInCart')} />
+          &nbsp;
+          <Link href="/userSignIn">
+            <IconButton>
+              {
+                isLoggedIn ? <AccountCircle color="inherit" /> : <AccountCircleOutlined color="inherit" />
+              }
+            </IconButton>
+          </Link>
+          <CartButton quantity={get(session, 'itemsInCart')} badgeProps={{
+            badgeContent: session?.cart?.items?.length, color: "primary"
+          }} />
           <MenuButton open={menuOpen} onClick={handleMenuButtonClick} />
         </Container>
       </AppBar>
@@ -64,11 +79,11 @@ export default function Header({ menu }) {
         root={menu}
         open={menuOpen}
         onClose={handleMenuClose}
-        // renderItem={item => <div>{item.text} (custom)</div>}
-        // renderItemContent={item => <div>{item.text} (custom content)</div>}
-        // renderBack={item => <div>{item.text} back</div>}
-        // renderHeader={item => <div>{item.text} header</div>}
-        // renderFooter={item => <div>{item.text} footer</div>}
+      // renderItem={item => <div>{item.text} (custom)</div>}
+      // renderItemContent={item => <div>{item.text} (custom content)</div>}
+      // renderBack={item => <div>{item.text} back</div>}
+      // renderHeader={item => <div>{item.text} header</div>}
+      // renderFooter={item => <div>{item.text} footer</div>}
       />
     </>
   )

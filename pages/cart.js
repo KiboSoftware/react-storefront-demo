@@ -49,7 +49,7 @@ export default function Cart(props) {
   const classes = useStyles()
   const { session, actions } = useContext(SessionContext)
   const items = get(session, 'cart.items')
-  
+
   const handleUpdateQuantity = (product, quantity) => {
     actions.updateCart({
       item: product,
@@ -67,7 +67,7 @@ export default function Cart(props) {
     <Container className={classes.root}>
       <Row>
         <Typography variant="h6">
-          My Cart ({items.length} {items.length === 1 ? 'item' : 'items'})
+          My Cart ({items?.length} {items?.length === 1 ? 'item' : 'items'})
         </Typography>
       </Row>
       <Row>
