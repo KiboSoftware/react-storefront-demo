@@ -7,6 +7,8 @@ import LoadMask from 'react-storefront/LoadMask'
 import Head from 'next/head'
 import createLazyProps from 'react-storefront/props/createLazyProps'
 import fetchFromAPI from 'react-storefront/props/fetchFromAPI'
+import { useEffect, useState } from 'react';
+import useContentService from '../services/useContentService';
 
 const useStyles = makeStyles(theme => ({
   main: {
@@ -21,6 +23,24 @@ const useStyles = makeStyles(theme => ({
 export default function Index(lazyProps) {
   const classes = useStyles()
   const [state] = useLazyState(lazyProps)
+  const [content, setContent] = useState();
+
+  const transformContent = (content) => {
+    const transformedContent = content.data.documentListDocuments.items.map(item => item.properties.content)
+    return transformedContent;
+  }
+
+  useEffect(() => {
+
+    const getContent = async () => {
+      const content = await useContentService("content_blocks@mozuadmin", "home");
+      const transformedContent = transformContent(content);
+      setContent(transformedContent)
+    }
+
+    getContent();
+
+  }, []);
 
   return (
     <>
@@ -38,6 +58,7 @@ export default function Index(lazyProps) {
               {state.pageData.slots.heading}
             </Typography>
             <CmsSlot>{state.pageData.slots.description}</CmsSlot>
+            {content && content.map((item, index) => <CmsSlot key={index}>{item}</CmsSlot>)}
           </div>
         )}
       </Container>
