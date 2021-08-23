@@ -54,10 +54,6 @@ export default function Index(lazyProps) {
           <LoadMask fullscreen />
         ) : (
           <div className={classes.main}>
-            <Typography variant="h3" component="h1" gutterBottom color="primary">
-              {state.pageData.slots.heading}
-            </Typography>
-            <CmsSlot>{state.pageData.slots.description}</CmsSlot>
             {content && content.map((item, index) => <CmsSlot key={index}>{item}</CmsSlot>)}
           </div>
         )}
