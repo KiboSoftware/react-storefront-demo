@@ -45,17 +45,11 @@ export default function signIn() {
     const [signUpLastName, setSignUpLastName] = useState('');
     const [signUpError, setSignUpError] = useState('');
 
-    useEffect(() => {
-        if (!session.signedIn && session.data) {
-            signIn(signUpEmail, signUpPassword)
-        }
-    }, [session])
-
-    const signIn = async (email, password) => {
+    const signIn = async () => {
         setSignInError('');
         await actions.signIn({
-            email: email,
-            password: password
+            email: signInEmail,
+            password: signInPassword
         })
     };
 
@@ -145,7 +139,7 @@ export default function signIn() {
                                 />
                             </div>
                             <div className={classes.spacingBlock}>
-                                <Button variant="outlined" onClick={() => signIn(signInEmail, signInPassword)}>Sign In</Button>
+                                <Button variant="outlined" onClick={() => signIn()}>Sign In</Button>
                             </div>
                             {signInError && (
                                 <div className={classes.spacingBlock}>
