@@ -153,6 +153,13 @@ const Product = React.memo(lazyProps => {
   return (
     <>
       <Breadcrumbs items={!loading && state.pageData.breadcrumbs} />
+      <Grid item xs={12}>
+        {
+          state.pageData?.slots?.banner && state.pageData?.slots?.banner?.map(image => {
+            return <CmsSlot>{image}</CmsSlot>
+          })
+        }
+      </Grid>
       <Container maxWidth="lg" style={{ paddingTop: theme.spacing(2) }}>
         <form onSubmit={handleSubmit} method="post" action-xhr="/api/cart">
           <Grid container spacing={4}>
