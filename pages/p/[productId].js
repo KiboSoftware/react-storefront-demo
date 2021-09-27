@@ -79,6 +79,12 @@ const styles = theme => ({
       boxShadow: 'none',
     },
   },
+  thumbnail: {
+    marginBottom: theme.spacing(1),
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
 })
 
 const useStyles = makeStyles(styles)
@@ -167,13 +173,20 @@ const Product = React.memo(lazyProps => {
               <Hidden implementation="css" smUp>
                 {header}
               </Hidden>
-              <MediaCarousel
-                className={classes.carousel}
-                lightboxClassName={classes.lightboxCarousel}
-                thumbnail={thumbnail.current}
-                height="100%"
-                media={color.media || (product && product.media)}
-              />
+              {
+                (product?.media?.full.length) ?
+                  <MediaCarousel
+                    className={classes.carousel}
+                    lightboxClassName={classes.lightboxCarousel}
+                    thumbnail={thumbnail.current}
+                    height="100%"
+                    media={color.media || (product && product.media)}
+                  />
+                  :
+                  <Skeleton variant="rectangular" animation={false} className={classes.thumbnail} width={'100%'} height={'100%'}>
+                    No Preview Available
+                  </Skeleton>
+              }
             </Grid>
             <Grid item xs={12} sm={6} md={7}>
               <Grid container spacing={4}>

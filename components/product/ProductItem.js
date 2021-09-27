@@ -1,13 +1,14 @@
 import React, { memo, useState } from 'react'
 import Link from 'react-storefront/link/Link'
 import { Vbox } from 'react-storefront/Box'
-import { Typography } from '@material-ui/core'
+import { Box, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import Rating from 'react-storefront/Rating'
 import ForwardThumbnail from 'react-storefront/ForwardThumbnail'
 import Image from 'react-storefront/Image'
 import clsx from 'clsx'
 import ProductOptionSelector from 'react-storefront/option/ProductOptionSelector'
+import { Skeleton } from '@material-ui/lab'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -21,6 +22,9 @@ const useStyles = makeStyles(theme => ({
   },
   thumbnail: {
     marginBottom: theme.spacing(1),
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   link: {
     textDecoration: 'none',
@@ -56,20 +60,27 @@ function ProductItem({ product, index, classes, className, colorSelector }) {
             pageData={{ product, color: store.color }}
           >
             <a>
-              <Image
-                className={classes.thumbnail}
-                src={
-                  (store.color && store.color.media.thumbnail.src) ||
-                  (store.thumbnail && store.thumbnail.src)
-                }
-                alt={
-                  (store.color && store.color.media.thumbnail.alt) ||
-                  (store.thumbnail && store.thumbnail.alt)
-                }
-                optimize={{ maxWidth: 200 }}
-                lazy={index >= 4 && index < 20 ? 'ssr' : false}
-                aspectRatio={1}
-              />
+              {
+                ((store.color && store.color.media.thumbnail.src) ||
+                  (store.thumbnail && store.thumbnail.src)) ?
+                  <Image
+                    className={classes.thumbnail}
+                    src={
+                      (store.color && store.color.media.thumbnail.src) ||
+                      (store.thumbnail && store.thumbnail.src)
+                    }
+                    alt={
+                      (store.color && store.color.media.thumbnail.alt) ||
+                      (store.thumbnail && store.thumbnail.alt)
+                    }
+                    optimize={{ maxWidth: 200 }}
+                    lazy={index >= 4 && index < 20 ? 'ssr' : false}
+                    aspectRatio={1}
+                  /> :
+                  <Skeleton variant="rectangular" animation={false} className={classes.thumbnail} width={'100%'} height={170}>
+                    No Preview Available
+                  </Skeleton>
+              }
             </a>
           </Link>
         </ForwardThumbnail>

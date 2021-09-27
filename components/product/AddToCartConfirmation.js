@@ -13,6 +13,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Image from 'react-storefront/Image'
 import Link from 'react-storefront/link/Link'
 import { Hbox } from 'react-storefront/Box'
+import { Skeleton } from '@material-ui/lab'
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -49,6 +50,12 @@ const useStyles = makeStyles(theme => ({
     right: theme.spacing(1),
     top: theme.spacing(1),
   },
+  thumbnail: {
+    marginBottom: theme.spacing(1),
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
 }))
 
 export default function AddToCartConfirmation({
@@ -79,11 +86,18 @@ export default function AddToCartConfirmation({
       <DialogContent>
         <Hbox align="flex-start">
           <div className={classes.image}>
-            <Image
-              fill
-              src={get(color, 'media.thumbnail.src') || get(product, 'thumbnail.src')}
-              alt={get(color, 'media.thumbnail.alt') || get(product, 'thumbnail.alt')}
-            />
+            {
+              get(color, 'media.thumbnail.src') || get(product, 'thumbnail.src') ?
+                <Image
+                  fill
+                  src={get(color, 'media.thumbnail.src') || get(product, 'thumbnail.src')}
+                  alt={get(color, 'media.thumbnail.alt') || get(product, 'thumbnail.alt')}
+                />
+                :
+                <Skeleton variant="rectangular" animation={false} className={classes.thumbnail} width={'100%'} height={170}>
+                  No Preview Available
+                </Skeleton>
+            }
           </div>
           <div className={classes.info}>
             <Typography className={classes.name}>{product.name}</Typography>

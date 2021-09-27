@@ -9,6 +9,7 @@ import { Hbox } from 'react-storefront/Box'
 import Image from 'react-storefront/Image'
 import SessionContext from 'react-storefront/session/SessionContext'
 import RemoveDialog from './RemoveDialog'
+import { Skeleton } from '@material-ui/lab'
 
 const styles = theme => ({
   root: {
@@ -32,6 +33,12 @@ const styles = theme => ({
     top: 0,
     right: 0,
   },
+  thumbnail: {
+    marginBottom: theme.spacing(1),
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
 })
 const useStyles = makeStyles(styles)
 
@@ -44,7 +51,14 @@ export default function CartItem({ product, updateQuantity, remove }) {
       <Paper className={classes.root} elevation={3}>
         <Hbox alignItems="flex-start">
           <div className={classes.thumb}>
-            <Image src={product.thumbnail.src} fill aspectRatio={1} quality={50} />
+            {
+              product.thumbnail.src ?
+                <Image src={product.thumbnail.src} fill aspectRatio={1} quality={50} />
+                :
+                <Skeleton variant="rectangular" animation={false} className={classes.thumbnail} width={'100%'} height={170}>
+                  No Preview Available
+                </Skeleton>
+            }
           </div>
           <div className={classes.info}>
             <Link as={product.url} href="/p/[productId]" prefetch="visible" pageData={{ product }}>
