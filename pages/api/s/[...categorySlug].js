@@ -1,4 +1,4 @@
-import { subcategory } from 'react-storefront-kibo-connector'
+import { subcategory } from '@kibocommerce/react-storefront-kibo-connector'
 
 export default async function plp(req, res) {
   // Note: the structure of the query string is controlled by the queryForState prop passed

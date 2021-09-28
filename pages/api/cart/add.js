@@ -1,4 +1,4 @@
-import { addToCart } from 'react-storefront-kibo-connector'
+import { addToCart } from '@kibocommerce/react-storefront-kibo-connector'
 
 async function handler(req, res) {
   const result = await addToCart(req.body, req, res)

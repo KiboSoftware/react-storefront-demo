@@ -1,1 +1,1 @@
-export { search as default } from 'react-storefront-kibo-connector'
+export { search as default } from '@kibocommerce/react-storefront-kibo-connector'
