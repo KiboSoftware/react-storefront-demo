@@ -3,7 +3,7 @@ const withReactStorefront = require('react-storefront/plugins/withReactStorefron
 
 module.exports = withReactStorefront({
   target: 'serverless',
-  connector: 'react-storefront-kibo-connector',
+  connector: '@kibocommerce/react-storefront-kibo-connector',
   webpack: config => {
     config.plugins.push(
       new webpack.optimize.LimitChunkCountPlugin({
