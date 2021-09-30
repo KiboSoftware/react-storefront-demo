@@ -1,7 +1,7 @@
 {
-  "name": "kibo-react-storefront",
-  "version": "0.0.0",
-  "private": true,
+  "name": "kibo-react-storefront-demo",
+  "version": "1.0.0-beta0",
+  "private": false,
   "description": "",
   "homepage": "",
   "author": "",
