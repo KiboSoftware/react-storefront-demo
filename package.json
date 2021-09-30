@@ -1,12 +1,9 @@
 {
-  "name": "kibo-react-storefront-demo",
-  "version": "1.0.0-beta0",
-  "private": false,
-  "description": "",
-  "homepage": "",
-  "author": "",
-  "license": "UNLICENSED",
   "scripts": {
+    "layer0:dev": "layer0 dev",
+    "layer0:prod": "layer0 run --production",
+    "layer0:build": "layer0 build",
+    "layer0:deploy": "layer0 deploy",
     "start": "npm run dev",
     "dev": "cross-env NODE_ENV=development nodemon server.js",
     "prod": "cross-env NODE_ENV=production node server.js",
@@ -15,12 +12,20 @@
     "deploy": "npm run build && xdn deploy",
     "prettier": "prettier --write \"**/*.js\" \"!{node_modules,.next,.yalc}/**\""
   },
+  "name": "kibo-react-storefront-demo",
+  "version": "1.0.0-beta0",
+  "private": false,
+  "description": "",
+  "homepage": "",
+  "author": "",
+  "license": "UNLICENSED",
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
     }
   },
   "dependencies": {
+    "@kibocommerce/react-storefront-kibo-connector": "^1.0.0-beta5",
     "@material-ui/core": "4.11.2",
     "@material-ui/icons": "4.11.2",
     "@material-ui/lab": "4.0.0-alpha.57",
@@ -39,10 +44,15 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.1",
     "react-storefront": "^8.17.4",
-    "@kibocommerce/react-storefront-kibo-connector": "^1.0.0-beta5",
     "react-visibility-sensor": "^5.1.1"
   },
   "devDependencies": {
+    "@layer0/cli": "^3.16.11",
+    "@layer0/core": "^3.16.11",
+    "@layer0/devtools": "^3.16.11",
+    "@layer0/next": "^3.16.11",
+    "@layer0/prefetch": "^3.16.11",
+    "@layer0/react": "^3.16.11",
     "babel-plugin-transform-imports": "^2.0.0",
     "dotenv": "^8.2.0",
     "nodemon": "^2.0.2",
