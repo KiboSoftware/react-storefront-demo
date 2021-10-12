@@ -1,7 +1,9 @@
 # react-storefront-starter-app
 
-Kibo's Starter Next.js app for React Storefront 7+
+Kibo's Starter Next.js app for [React Storefront 7+](https://www.reactstorefront.io/)
 * [Demo](https://kibo-commerce-react-storefront-demo-default.layer0.link)
+* [React Storefront Docs](https://docs.reactstorefront.io/)
+
 
 # Development
 
